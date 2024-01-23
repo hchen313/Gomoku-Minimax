@@ -21,6 +21,13 @@ player_turn = True
 test_range = set()
 tt = {}
 move_count = 0
+pattern_lst = []
+pattern_lst = []
+pattern_lst.append(fp_4_2_white)
+pattern_lst.append(fp_4_1_white)
+pattern_lst.append(fp_4_1_black)
+pattern_lst.append(fp_3_2_white)
+pattern_lst.append(fp_3_2_black)
 
 def new_table():
     screen.fill((227, 165, 82))
@@ -63,97 +70,22 @@ def check_winner(grid):
         return True
     return False
 
-def check_force_plays(grid, black, white):
-    value = None
-    best_choice = False
+def check_force_plays(grid):
+    for lst in pattern_lst:
+        value = force_play_values(lst, grid)
+        if value is not None:
+            return value
+    return None
 
-    # horizontal
-    for i in range(0, 225, 15):
-        binary_string = "".join(map(str, grid[i:i+15]))
-        match = re.search("022220|02222|22220", binary_string)
-        if match:
-            return match.start() + match.group().index("0") + i
-        match = re.search("01111|11110", binary_string)
-        if match:
-            return match.start() + match.group().index("0") + i
-        match = re.search("011110", binary_string)
-        if match:
-            return math.inf
-        match = re.search("002220|022200", binary_string)
-        if match:
-            value = match.start() + match.group().find("0", match.group().find('0') + 1) + i
-            best_choice = True
-        if best_choice == False:
-            match = re.search("(0)1110",binary_string)
-            if match:
-                value = match.start(1) + i
-                # match for (01110)
-                # option_1 = "21110"
-                # option_2 = "01112"
-                # new_string_1 = binary_string.replace(match.group(0), option_1)
-                # new_string_2 = binary_string.replace(match.group(0), option_2)
-                # arr_1 = grid[0:i] + [int(char) for char in new_string_1] + grid[i+15:225]
-                # arr_2 = grid[0:i] + [int(char) for char in new_string_2] + grid[i+15:225]
-                # if evaluate(arr_1, black, white) > evaluate(arr_2, black, white):
-                #     value = match.start() + match.group().index("0") + i
-                # else:
-                #     value = match.start() + match.group().find("0", match.group().find('0') + 1) + i
-
-    # vertical
+def force_play_values(lst, grid):
     binary_string = "".join(map(str, grid))
-    for pattern in fp_v:
+    for pattern in lst:
         match = re.search(pattern, binary_string)
         if match:
             return match.start(1)
-    match = re.search("0\d{14}1\d{14}1\d{14}1\d{14}1\d{14}0", binary_string)
-    if match:
-        return math.inf
-    if best_choice == False:
-        for pattern in fp_v_b:
-            match = re.search(pattern, binary_string)
-            if match:
-                value = match.start(1)
-    if best_choice == False:
-        match = re.search("(0)\d{14}1\d{14}1\d{14}1\d{14}0", binary_string)
-        if match:
-            value = match.start(1)
+    return None
 
-    # diagonal
-    for pattern in fp_d:
-        match = re.search(pattern, binary_string)
-        if match:
-            return match.start(1)
-    match = re.search("0\d{15}1\d{15}1\d{15}1\d{15}1\d{15}0", binary_string)
-    if match:
-        return math.inf
-    if best_choice == False:
-        for pattern in fp_d_b:
-            match = re.search(pattern, binary_string)
-            if match:
-                value = match.start(1)
-    if best_choice == False:
-        match = re.search("(0)\d{15}1\d{15}1\d{15}1\d{15}0", binary_string)
-        if match:
-            value = match.start(1)
 
-    # anti-diagonal
-    for pattern in fp_a:
-        match = re.search(pattern, binary_string)
-        if match:
-            return match.start(1)
-    match = re.search("0\d{13}1\d{13}1\d{13}1\d{13}1\d{13}0", binary_string)
-    if match:
-        return math.inf
-    if best_choice == False:
-        for pattern in fp_a_b:
-            match = re.search(pattern, binary_string)
-            if match:
-                value = match.start(1)
-    if best_choice == False:
-        match = re.search("(0)\d{13}1\d{13}1\d{13}1\d{13}0", binary_string)
-        if match:
-            value = match.start(1)
-    return value
 
 
 
@@ -161,7 +93,7 @@ def next_move(grid, black, white):
     move = None
     force_plays = None
     if move_count > 5:
-        force_plays = check_force_plays(grid, black, white)
+        force_plays = check_force_plays(grid)
     if force_plays == None:
         score = -math.inf if black_turn else math.inf
         for i in test_range:
@@ -171,7 +103,9 @@ def next_move(grid, black, white):
                     black[i] = 1
                 else:
                     white[i] = 1
-                res = minimax(grid, black, white, 1, not black_turn, -math.inf, math.inf)
+                # depth control
+                depth = 2
+                res = minimax(grid, black, white, depth, not black_turn, -math.inf, math.inf)
                 grid[i] = 0
                 if black_turn:
                     black[i] = 0
@@ -185,8 +119,6 @@ def next_move(grid, black, white):
                         move = i
     else:
         move = force_plays
-    if move == math.inf:
-        move = None
     return move
 
 def evaluate(grid, black, white):

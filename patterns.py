@@ -48,17 +48,6 @@ pt_white_v["(0\d{14})2(\d{14})2(\d{14}0\d{14}0)"] = 25
 pt_white_v["(0\d{14}0\d{14})2(\d{14})2(\d{14}0)"] = 25
 pt_white_v["()2(\d{14})2(\d{14}0\d{14}0\d{14}0)"] = 10
 pt_white_v["(0\d{14}0\d{14}0\d{14})2(\d{14})2()"] = 10
-    # force_play
-fp_v = []
-fp_v.append("(0)\d{14}2\d{14}2\d{14}2\d{14}2\d{14}0")
-fp_v.append("2\d{14}2\d{14}2\d{14}2\d{14}(0)")
-fp_v.append("(0)\d{14}2\d{14}2\d{14}2\d{14}2")
-fp_v.append("1\d{14}1\d{14}1\d{14}1\d{14}(0)")
-fp_v.append("(0)\d{14}1\d{14}1\d{14}1\d{14}1")
-
-fp_v_b = []
-fp_v_b.append("0\d{14}(0)\d{14}2\d{14}2\d{14}2\d{14}0")
-fp_v_b.append("0\d{14}2\d{14}2\d{14}2\d{14}(0)\d{14}0")
 
 # diagonal
     # black
@@ -85,18 +74,6 @@ pt_white_d["(0\d{15})2(\d{15})2(\d{15}0\d{15}0)"] = 25
 pt_white_d["(0\d{15}0\d{15})2(\d{15})2(\d{15}0)"] = 25
 pt_white_d["()2(\d{15})2(\d{15}0\d{15}0\d{15}0)"] = 10
 pt_white_d["(0\d{15}0\d{15}0\d{15})2(\d{15})2()"] = 10
-    #force play
-fp_d = []
-fp_d.append("(0)\d{15}2\d{15}2\d{15}2\d{15}2\d{15}0")
-fp_d.append("2\d{15}2\d{15}2\d{15}2\d{15}(0)")
-fp_d.append("(0)\d{15}2\d{15}2\d{15}2\d{15}2")
-fp_d.append("1\d{15}1\d{15}1\d{15}1\d{15}(0)")
-fp_d.append("(0)\d{15}1\d{15}1\d{15}1\d{15}1")
-
-fp_d_b = []
-fp_d_b.append("0\d{15}(0)\d{15}2\d{15}2\d{15}2\d{15}0")
-fp_d_b.append("0\d{15}2\d{15}2\d{15}2\d{15}(0)\d{15}0")
-
 
 # anti-diagonal
     # black
@@ -123,14 +100,70 @@ pt_white_a["(0\d{13})2(\d{13})2(\d{13}0\d{13}0)"] = 25
 pt_white_a["(0\d{13}0\d{13})2(\d{13})2(\d{13}0)"] = 25
 pt_white_a["()2(\d{13})2(\d{13}0\d{13}0\d{13}0)"] = 10
 pt_white_a["(0\d{13}0\d{13}0\d{13})2(\d{13})2()"] = 10
-    # force play
-fp_a = []
-fp_a.append("(0)\a{13}2\a{13}2\a{13}2\a{13}2\a{13}0")
-fp_a.append("2\a{13}2\a{13}2\a{13}2\a{13}(0)")
-fp_a.append("(0)\a{13}2\a{13}2\a{13}2\a{13}2")
-fp_a.append("1\a{13}1\a{13}1\a{13}1\a{13}(0)")
-fp_a.append("(0)\a{13}1\a{13}1\a{13}1\a{13}1")
 
-fp_a_b = []
-fp_a_b.append("0\a{13}(0)\a{13}2\a{13}2\a{13}2\a{13}0")
-fp_a_b.append("0\a{13}2\a{13}2\a{13}2\a{13}(0)\a{13}0")
+# force plays
+fp_4_2_white = []
+fp_4_2_white.append("(0)22220")
+fp_4_2_white.append("(0)\d{14}2\d{14}2\d{14}2\d{14}2\d{14}0")
+fp_4_2_white.append("(0)\d{15}2\d{15}2\d{15}2\d{15}2\d{15}0")
+fp_4_2_white.append("(0)\d{13}2\d{13}2\d{13}2\d{13}2\d{13}0")
+
+fp_4_1_white = []
+fp_4_1_white.append("(0)2222")
+fp_4_1_white.append("2(0)222")
+fp_4_1_white.append("22(0)22")
+fp_4_1_white.append("222(0)2")
+fp_4_1_white.append("2222(0)")
+fp_4_1_white.append("(0)\d{14}2\d{14}2\d{14}2\d{14}2")
+fp_4_1_white.append("2\d{14}(0)\d{14}2\d{14}2\d{14}2")
+fp_4_1_white.append("2\d{14}2\d{14}(0)\d{14}2\d{14}2")
+fp_4_1_white.append("2\d{14}2\d{14}2\d{14}(0)\d{14}2")
+fp_4_1_white.append("2\d{14}2\d{14}2\d{14}2\d{14}(0)")
+fp_4_1_white.append("(0)\d{15}2\d{15}2\d{15}2\d{15}2")
+fp_4_1_white.append("2\d{15}(0)\d{15}2\d{15}2\d{15}2")
+fp_4_1_white.append("2\d{15}2\d{15}(0)\d{15}2\d{15}2")
+fp_4_1_white.append("2\d{15}2\d{15}2\d{15}(0)\d{15}2")
+fp_4_1_white.append("2\d{15}2\d{15}2\d{15}2\d{15}(0)")
+fp_4_1_white.append("(0)\d{13}2\d{13}2\d{13}2\d{13}2")
+fp_4_1_white.append("2\d{13}(0)\d{13}2\d{13}2\d{13}2")
+fp_4_1_white.append("2\d{13}2\d{13}(0)\d{13}2\d{13}2")
+fp_4_1_white.append("2\d{13}2\d{13}2\d{13}(0)\d{13}2")
+fp_4_1_white.append("2\d{13}2\d{13}2\d{13}2\d{13}(0)")
+
+fp_4_1_black = []
+fp_4_1_black.append("(0)1111")
+fp_4_1_black.append("1(0)111")
+fp_4_1_black.append("11(0)11")
+fp_4_1_black.append("111(0)1")
+fp_4_1_black.append("1111(0)")
+fp_4_1_black.append("(0)\d{14}1\d{14}1\d{14}1\d{14}1")
+fp_4_1_black.append("1\d{14}(0)\d{14}1\d{14}1\d{14}1")
+fp_4_1_black.append("1\d{14}1\d{14}(0)\d{14}1\d{14}1")
+fp_4_1_black.append("1\d{14}1\d{14}1\d{14}(0)\d{14}1")
+fp_4_1_black.append("1\d{14}1\d{14}1\d{14}1\d{14}(0)")
+fp_4_1_black.append("(0)\d{15}1\d{15}1\d{15}1\d{15}1")
+fp_4_1_black.append("1\d{15}(0)\d{15}1\d{15}1\d{15}1")
+fp_4_1_black.append("1\d{15}1\d{15}(0)\d{15}1\d{15}1")
+fp_4_1_black.append("1\d{15}1\d{15}1\d{15}(0)\d{15}1")
+fp_4_1_black.append("1\d{15}1\d{15}1\d{15}1\d{15}(0)")
+fp_4_1_black.append("(0)\d{13}1\d{13}1\d{13}1\d{13}1")
+fp_4_1_black.append("1\d{13}(0)\d{13}1\d{13}1\d{13}1")
+fp_4_1_black.append("1\d{13}1\d{13}(0)\d{13}1\d{13}1")
+fp_4_1_black.append("1\d{13}1\d{13}1\d{13}(0)\d{13}1")
+fp_4_1_black.append("1\d{13}1\d{13}1\d{13}1\d{13}(0)")
+
+fp_3_2_white = []
+fp_3_2_white.append("0(0)2220")
+fp_3_2_white.append("0222(0)0")
+fp_3_2_white.append("0\d{14}(0)\d{14}2\d{14}2\d{14}2\d{14}0")
+fp_3_2_white.append("0\d{14}2\d{14}2\d{14}2\d{14}(0)\d{14}0")
+fp_3_2_white.append("0\d{15}(0)\d{15}2\d{15}2\d{15}2\d{15}0")
+fp_3_2_white.append("0\d{15}2\d{15}2\d{15}2\d{15}(0)\d{15}0")
+fp_3_2_white.append("0\d{13}(0)\d{13}2\d{13}2\d{13}2\d{13}0")
+fp_3_2_white.append("0\d{13}2\d{13}2\d{13}2\d{13}(0)\d{13}0")
+
+fp_3_2_black = []
+fp_3_2_black.append("(0)1110")
+fp_3_2_black.append("(0)\d{14}1\d{14}1\d{14}1\d{14}0")
+fp_3_2_black.append("(0)\d{15}1\d{15}1\d{15}1\d{15}0")
+fp_3_2_black.append("(0)\d{13}1\d{13}1\d{13}1\d{13}0")
